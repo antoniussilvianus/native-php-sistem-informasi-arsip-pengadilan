@@ -9,7 +9,13 @@
                     <table id="dtskripsi" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>No.</th><th width="17%">Nomor Perkara</th><th>Nama Peminjam</th><th>Tanggal Pinjam</th><th>Tanggal Kembali</th><th>Lama Pinjam</th><th>AKSI</th>
+                                <th>No.</th>
+                                <th width="17%">Nomor Perkara</th>
+                                <th>Nama Peminjam</th>
+                                <th>Tanggal Pinjam</th>
+                                <th>Tanggal Kembali</th>
+                                <th>Lama Pinjam</th>
+                                <th>AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,14 +32,14 @@
                             //Melakukan perulangan u/menampilkan data
                             while ($data = mysqli_fetch_array($query)) {
                                 $nomor++; //Penambahan satu untuk nilai var nomor
-                                ?>
+                            ?>
                                 <tr>
                                     <td><?= $nomor ?></td>
-									                  <td><?= $data['no_perkara'] ?></td>
+                                    <td><?= $data['no_perkara'] ?></td>
                                     <td><?= $data['peminjam'] ?></td>
                                     <td><?= $data['tgl_pinjam'] ?></td>
                                     <td><?= $data['tgl_kembali'] ?></td>
-									                  <td><?= $data['lama_pinjam'] ?> hari</td>
+                                    <td><?= $data['lama_pinjam'] ?> hari</td>
                                     <td>
                                         <a href="report/peminjaman_satu.php?id=<?= $data['id'] ?>" target="_blank" class="btn btn-info btn-xs">
                                             <span class="fa fa-print"></span>
@@ -74,32 +80,32 @@
     <div>
         <a href="#" title="Close" class="close">X</a>
 
-        <form  target="_blank" action="report/peminjaman_perbulan.php" method="post">
-        <h4>Pilih bulan </h4>
-        <select name="bulan" class="form-control">
-          <option value="12"> Desember </option>
-          <option value="11"> November </option>
-          <option value="10"> Oktober </option>
-          <option value="09"> September </option>
-          <option value="08"> Agustus </option>
-          <option value="07"> Juli </option>
-          <option value="06"> Juni </option>
-          <option value="05"> Mei </option>
-          <option value="04"> April </option>
-          <option value="03"> Maret </option>
-          <option value="02"> Februari </option>
-          <option value="01"> Januari </option>
-        </select>
-        <h4>Pilih tahun</h4>
-        <select name="tahun" class="form-control">
-          <?
-            for ($i=substr(date("d-m-Y"),6,4); $i > substr(date("d-m-Y"),6,4)-5; $i--) { ?>
-              <option value="<?=$i?>"> <?=$i?> </option>
-          <?  }
-          ?>
-        </select>
+        <form target="_blank" action="report/peminjaman_perbulan.php" method="post">
+            <h4>Pilih bulan </h4>
+            <select name="bulan" class="form-control">
+                <option value="12"> Desember </option>
+                <option value="11"> November </option>
+                <option value="10"> Oktober </option>
+                <option value="09"> September </option>
+                <option value="08"> Agustus </option>
+                <option value="07"> Juli </option>
+                <option value="06"> Juni </option>
+                <option value="05"> Mei </option>
+                <option value="04"> April </option>
+                <option value="03"> Maret </option>
+                <option value="02"> Februari </option>
+                <option value="01"> Januari </option>
+            </select>
+            <h4>Pilih tahun</h4>
+            <select name="tahun" class="form-control">
+                <?php
+                for ($i = intval(substr(date("d-m-Y"), 6, 4)); $i > intval(substr(date("d-m-Y"), 6, 4)) - 5; $i--) {
+                    echo "<option value='" . $i . "'>" . $i . "</option>";
+                }
+                ?>
+            </select>
 
-        <button type="submit">OK</button>
+            <button type="submit">OK</button>
         </form>
     </div>
 </div>
@@ -108,17 +114,17 @@
     <div>
         <a href="#" title="Close" class="close">X</a>
 
-        <form  target="_blank" action="report/peminjaman_pertahun.php" method="post">
-        <h4>Pilih tahun</h4>
-        <select name="tahun" class="form-control">
-          <?
-            for ($i=substr(date("d-m-Y"),6,4); $i > substr(date("d-m-Y"),6,4)-5; $i--) { ?>
-              <option value="<?=$i?>"> <?=$i?> </option>
-          <?  }
-          ?>
-        </select>
+        <form target="_blank" action="report/peminjaman_pertahun.php" method="post">
+            <h4>Pilih tahun</h4>
+            <select name="tahun" class="form-control">
+                <?
+                for ($i = substr(date("d-m-Y"), 6, 4); $i > substr(date("d-m-Y"), 6, 4) - 5; $i--) { ?>
+                    <option value="<?= $i ?>"> <?= $i ?> </option>
+                <?  }
+                ?>
+            </select>
 
-        <button type="submit">OK</button>
+            <button type="submit">OK</button>
         </form>
     </div>
 </div>
